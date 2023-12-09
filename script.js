@@ -4,7 +4,7 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    console.log(`playerSelection: ${playerSelection}, computerSelection: ${computerSelection}`);
+    // console.log(`playerSelection: ${playerSelection}, computerSelection: ${computerSelection}`);
     let TIE = true;
     playerSelection = playerSelection.toLowerCase();
     
@@ -40,9 +40,26 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const playerSelection = "rock";
-// const playerSelection = "paper";
-// const playerSelection = "scissor";
+function game() {
 
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+    let playerSelection = "";
+    const choices = [ "rock","paper","scissor"];
+    let rounds = 5;
+    for (i = 0; i < rounds; i++) {
+        //input checker
+        do {
+            playerSelection = prompt("Rock, Paper, Scissor? (pick one)");
+            isAllowed = choices.includes(playerSelection.toLowerCase());
+            if (!isAllowed){
+                console.log("Wrong choice. Please try again.");
+            }
+            // console.log(`isAllowed: ${isAllowed}`);
+        } while (!isAllowed);
+        // console.log(`playerSelection: ${playerSelection}`);
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+    }
+
+}
+
+game();
